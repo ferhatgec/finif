@@ -1,0 +1,3 @@
+[submodule "libs/inif"]
+	path = libs/inif
+	url = https://github.com/ferhatgec/inif.git
