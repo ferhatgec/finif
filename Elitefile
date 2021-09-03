@@ -1,0 +1,30 @@
+required_version is 0.1
+
+set sudo     as     "sudo"
+set bin_path as     "/usr/bin/"
+set bin      as     "finif"
+set compiler as     "c++"
+set standard as std "c++17"
+
+set src      as "src/"
+set file     as "{src}finif.cpp"
+
+for signal "start" [
+    for specific "windows" [
+        use signal "exit"
+    ]
+
+    for exists "{bin_path}clang++" [
+        set compiler as "clang++"
+    ]
+
+    for argument "install" [
+        use exec "{sudo} {compiler} {standard} {file} -o {bin_path}{bin}"
+    ]
+
+    for exists "{bin_path}{bin}" [
+        println "Installed to {bin_path}{bin}"
+    ]
+
+    use signal "exit"
+]
